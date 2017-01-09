@@ -1,9 +1,15 @@
-import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 
-public class Stickman_Platformer {
+public class Stickman_Platformer  {
 	JFrame f1;
+	JButton b1;
+	JButton b2;
 	
 	//Final ints for game, not menu. Don't use for menu.
 	final int Height = 500;
@@ -21,10 +27,14 @@ public class Stickman_Platformer {
 	}
 	void setup(){
 		
-		f1.setSize(500, 500);
+		
 		f1.setVisible(true);
 		f1.add(panel);
+		f1.addKeyListener(panel);
 		panel.startGame();
 		f1.setDefaultCloseOperation(f1.EXIT_ON_CLOSE);
+		f1.setSize(500, 500);
 	}
+	
+	
 }
