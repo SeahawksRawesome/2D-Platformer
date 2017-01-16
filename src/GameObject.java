@@ -9,10 +9,10 @@ public class GameObject {
 		
 	}
 	void update(){
-		x++;
+	
 	}
 	void draw(Graphics g){
-		g.fillRect(x, y, 100, 100);
+		
 
 	}
 }

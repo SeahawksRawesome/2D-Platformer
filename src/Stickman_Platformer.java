@@ -12,8 +12,8 @@ public class Stickman_Platformer  {
 	JButton b2;
 	
 	//Final ints for game, not menu. Don't use for menu.
-	final int Height = 500;
-	final int Width = 800;
+	final int Height = 1000;
+	final int Width = 1000;
 	GamePanel panel; 
 	public static void main(String[] args) {
 	Stickman_Platformer	m = new Stickman_Platformer();
@@ -33,7 +33,7 @@ public class Stickman_Platformer  {
 		f1.addKeyListener(panel);
 		panel.startGame();
 		f1.setDefaultCloseOperation(f1.EXIT_ON_CLOSE);
-		f1.setSize(500, 500);
+		f1.setSize(Width, Height);
 	}
 	
 	
