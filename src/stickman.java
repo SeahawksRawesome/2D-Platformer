@@ -12,7 +12,7 @@ public class stickman extends GameObject{
 	final int gravity = 1;
 	int velocity = 0;
 	int jumppower = 25;
-	boolean doublejump = false;
+	boolean doublejump = true;
 	stickman(int x, int y, int width, int height){
 		this.x = x;
 		this.y = y;
