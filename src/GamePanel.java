@@ -14,7 +14,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	final int END_STATE = 2;
 	int currentState = GAME_STATE;
 	stickman player = new stickman(250, 100, 50, 50);
-	Platform platform = new Platform(500, 400, 100, 20);
+	Platform platform = new Platform(300, 500, 100, 20);
 	
 
 	GamePanel() {
@@ -57,6 +57,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	void updateGameState() {
 		player.update();
+		platform.update();
+		if(player.CollisionBox.intersects(platform.CollisionBox)){
+			
+		}
+	
 	}
 
 	void updateEndState() {
@@ -69,6 +74,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	void drawGameState(Graphics g) {
 		player.draw(g);
+		platform.draw(g);
+		
 	}
 
 	void drawEndState(Graphics g) {
