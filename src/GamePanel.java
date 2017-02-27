@@ -15,7 +15,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	int currentState = GAME_STATE;
 	stickman player = new stickman(250, 100, 50, 50);
 	Platform platform = new Platform(300, 500, 100, 20);
-	
+	ObjectManager manage = new ObjectManager();
 
 	GamePanel() {
 		time = new Timer(1000 / 60, this);
@@ -24,7 +24,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+
 		repaint();
 		// Change to Menu state later.
 		if (currentState == MENU_STATE) {
@@ -58,10 +58,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	void updateGameState() {
 		player.update();
 		platform.update();
-		if(player.CollisionBox.intersects(platform.CollisionBox)){
-			
+		if (manage.checkCollision(player, platform)) {
+			player.bottom = 450;
+		} else {
+			player.bottom = 700;
 		}
-	
+
 	}
 
 	void updateEndState() {
@@ -75,7 +77,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	void drawGameState(Graphics g) {
 		player.draw(g);
 		platform.draw(g);
-		
+
 	}
 
 	void drawEndState(Graphics g) {
@@ -91,14 +93,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		System.out.println("Hi");
-		if(e.getKeyCode() == KeyEvent.VK_LEFT){
+		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			player.Leftkey = true;
 		}
-		
-		if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			player.Rightkey = true;
 		}
-		if(e.getKeyCode() == KeyEvent.VK_SPACE){
+		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			player.jump();
 		}
 	}
@@ -106,13 +108,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		System.out.println("Hi");
-		if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			player.Rightkey = false;
 		}
-		if(e.getKeyCode() == KeyEvent.VK_LEFT){
+		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			player.Leftkey = false;
 		}
-		
+
 	}
 
 }
