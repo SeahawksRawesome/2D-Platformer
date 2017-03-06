@@ -1,4 +1,6 @@
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -59,7 +61,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		player.update();
 		platform.update();
 		if (manage.checkCollision(player, platform)) {
-			player.bottom = 450;
+			player.bottom = 451;
 		} else {
 			player.bottom = 700;
 		}
@@ -77,6 +79,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	void drawGameState(Graphics g) {
 		player.draw(g);
 		platform.draw(g);
+		g.setColor(new Color(139, 69, 19));
+		g.fillRect(0, 830, 1000, 900);
+		g.setColor(Color.green);
+		g.fillRect(0, 750, 1000, 80);
 
 	}
 
