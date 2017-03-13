@@ -13,7 +13,7 @@ public class Stickman_Platformer  {
 	
 	//Final ints for game, not menu. Don't use for menu.
 	final int Height = 1000;
-	final int Width = 1000;
+	final int Width = 2000;
 	GamePanel panel; 
 	public static void main(String[] args) {
 	Stickman_Platformer	m = new Stickman_Platformer();

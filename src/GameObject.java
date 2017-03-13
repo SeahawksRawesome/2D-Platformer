@@ -6,15 +6,15 @@ public class GameObject {
 	int y;
 	int width;
 	int height;
-	Rectangle CollisionBox;
+	Rectangle collisionBox;
 
 	GameObject() {
-		CollisionBox = new Rectangle(x, y, width, height);
+		collisionBox = new Rectangle(x, y, width, height);
 
 	}
 
 	void update() {
-		CollisionBox.setBounds(x, y, width, height);
+		collisionBox.setBounds(x, y, width, height);
 	}
 
 	void draw(Graphics g) {

@@ -15,13 +15,17 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	final int GAME_STATE = 1;
 	final int END_STATE = 2;
 	int currentState = GAME_STATE;
-	stickman player = new stickman(250, 100, 50, 50);
-	Platform platform = new Platform(300, 500, 100, 20);
+	Stickman player = new Stickman(250, 100, 50, 50);
+	int bottom = 700;
 	ObjectManager manage = new ObjectManager();
 
 	GamePanel() {
 		time = new Timer(1000 / 60, this);
-
+		player.bottom = bottom;
+		manage.addObject(player);
+		manage.addObject(new Platform(300, 500, 100, 20));
+		manage.addObject(new Platform(400, 600, 100, 20));
+		
 	}
 
 	@Override
@@ -58,12 +62,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	void updateGameState() {
-		player.update();
-		platform.update();
-		if (manage.checkCollision(player, platform)) {
-			player.bottom = 451;
+		manage.update();
+		
+		if (manage.checkCollision()) {
+			player.bottom = manage.platformOffset;
 		} else {
-			player.bottom = 700;
+			player.bottom = bottom;
 		}
 
 	}
@@ -77,12 +81,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	void drawGameState(Graphics g) {
-		player.draw(g);
-		platform.draw(g);
+		manage.draw(g);
 		g.setColor(new Color(139, 69, 19));
-		g.fillRect(0, 830, 1000, 900);
+		g.fillRect(0, 830, 2000, 900);
 		g.setColor(Color.green);
-		g.fillRect(0, 750, 1000, 80);
+		g.fillRect(0, 750, 2000, 80);
+		
 
 	}
 
@@ -92,13 +96,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		System.out.println("Hi");
+		//System.out.println("Hi");
 
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		System.out.println("Hi");
+		//System.out.println("Hi");
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			player.Leftkey = true;
 		}

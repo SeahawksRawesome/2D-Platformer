@@ -8,16 +8,16 @@ public class Platform extends GameObject {
 		this.y = y;
 		this.width = width;
 		this.height = height;
-		CollisionBox = new Rectangle(x, y, width, height);
+		collisionBox = new Rectangle(x, y, width, height -15);
 	}
 	void update(){
-		CollisionBox.setBounds(x, y, width, height);
+		collisionBox.setBounds(x, y, width, height -15);
 	}
 	void draw(Graphics g){
 		g.setColor(Color.GREEN);
 		g.fillRect(x, y, width, height);
 		g.setColor(Color.BLACK);
-		g.drawRect(CollisionBox.x, CollisionBox.y, CollisionBox.width, CollisionBox.height);
+		g.drawRect(collisionBox.x, collisionBox.y, collisionBox.width, collisionBox.height);
 	}
 	
 }

@@ -2,7 +2,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-public class stickman extends GameObject {
+public class Stickman extends GameObject {
 
 	int speed;
 	boolean Rightkey;
@@ -14,14 +14,14 @@ public class stickman extends GameObject {
 	int jumppower = 25;
 	boolean doublejump = true;
 
-	stickman(int x, int y, int width, int height) {
+	Stickman(int x, int y, int width, int height) {
 		super();
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
 		speed = 5;
-		CollisionBox = new Rectangle(x, y, width, height);
+		collisionBox = new Rectangle(x, y, width, height);
 	}
 
 	void update() {
@@ -38,14 +38,14 @@ public class stickman extends GameObject {
 			y = bottom;
 			velocity = 0;
 		}
-		CollisionBox.setBounds(x, y, width, height);
+		collisionBox.setBounds(x, y, width, height);
 
 	}
 
 	void draw(Graphics g) {
 		g.setColor(Color.BLACK);
 		g.fillRect(x, y, width, height);
-		g.drawRect(CollisionBox.x, CollisionBox.y, CollisionBox.width, CollisionBox.height);
+		g.drawRect(collisionBox.x, collisionBox.y, collisionBox.width, collisionBox.height);
 	}
 
 	public void jump() {
