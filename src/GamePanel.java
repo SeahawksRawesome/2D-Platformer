@@ -1,11 +1,13 @@
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -15,9 +17,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	final int GAME_STATE = 1;
 	final int END_STATE = 2;
 	int currentState = GAME_STATE;
-	Stickman player = new Stickman(250, 100, 50, 50);
+	Stickman player = new Stickman(250, 100, 44, 80);
 	int bottom = 700;
 	ObjectManager manage = new ObjectManager();
+	public static BufferedImage ninjaImg;
+	public static BufferedImage ninjarunningImg;
 
 	GamePanel() {
 		time = new Timer(1000 / 60, this);
@@ -25,7 +29,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		manage.addObject(player);
 		manage.addObject(new Platform(300, 500, 100, 20));
 		manage.addObject(new Platform(400, 600, 100, 20));
-		
+		try {
+			ninjaImg = ImageIO.read(this.getClass().getResourceAsStream("Ninja Idle.png"));
+			ninjarunningImg = ImageIO.read(this.getClass().getResourceAsStream("Ninja Throwing Shuriken.png"));
+		} catch (IOException e) { // TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -63,7 +72,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	void updateGameState() {
 		manage.update();
-		
+
 		if (manage.checkCollision()) {
 			player.bottom = manage.platformOffset;
 		} else {
@@ -86,7 +95,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.fillRect(0, 830, 2000, 900);
 		g.setColor(Color.green);
 		g.fillRect(0, 750, 2000, 80);
-		
 
 	}
 
@@ -96,13 +104,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		//System.out.println("Hi");
+		// System.out.println("Hi");
 
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		//System.out.println("Hi");
+		// System.out.println("Hi");
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			player.Leftkey = true;
 		}

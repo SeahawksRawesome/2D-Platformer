@@ -44,8 +44,8 @@ public class Stickman extends GameObject {
 
 	void draw(Graphics g) {
 		g.setColor(Color.BLACK);
-		g.fillRect(x, y, width, height);
 		g.drawRect(collisionBox.x, collisionBox.y, collisionBox.width, collisionBox.height);
+		g.drawImage(GamePanel.ninjaImg, x, y, width, height, null);
 	}
 
 	public void jump() {
