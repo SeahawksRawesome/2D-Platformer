@@ -11,7 +11,7 @@ public class Stickman extends GameObject {
 	int bottom = 700;
 	final int gravity = 1;
 	int velocity = 0;
-	int jumppower = 25;
+	int jumppower = 20;
 	boolean doublejump = true;
 
 	Stickman(int x, int y, int width, int height) {
@@ -22,6 +22,7 @@ public class Stickman extends GameObject {
 		this.height = height;
 		speed = 5;
 		collisionBox = new Rectangle(x, y, width, height);
+		feetBox= new Rectangle(x, y , width, height );
 	}
 
 	void update() {
@@ -39,12 +40,14 @@ public class Stickman extends GameObject {
 			velocity = 0;
 		}
 		collisionBox.setBounds(x, y, width, height);
-
+		feetBox.setBounds(x, y +70, width, height -70  );
 	}
 
 	void draw(Graphics g) {
+		//g.setColor(Color.WHITE);
+		//g.drawRect(collisionBox.x, collisionBox.y, collisionBox.width, collisionBox.height);
 		g.setColor(Color.BLACK);
-		g.drawRect(collisionBox.x, collisionBox.y, collisionBox.width, collisionBox.height);
+		g.drawRect(feetBox.x, feetBox.y, feetBox.width, feetBox.height);
 		g.drawImage(GamePanel.ninjaImg, x, y, width, height, null);
 	}
 

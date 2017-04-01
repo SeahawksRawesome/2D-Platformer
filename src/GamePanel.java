@@ -18,7 +18,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	final int END_STATE = 2;
 	int currentState = GAME_STATE;
 	Stickman player = new Stickman(250, 100, 44, 80);
-	int bottom = 700;
+	int bottom = 670;
 	ObjectManager manage = new ObjectManager();
 	public static BufferedImage ninjaImg;
 	public static BufferedImage ninjarunningImg;
@@ -31,7 +31,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		manage.addObject(new Platform(400, 600, 100, 20));
 		try {
 			ninjaImg = ImageIO.read(this.getClass().getResourceAsStream("Ninja Idle.png"));
-			ninjarunningImg = ImageIO.read(this.getClass().getResourceAsStream("Ninja Throwing Shuriken.png"));
+			//ninjarunningImg = ImageIO.read(this.getClass().getResourceAsStream("Ninja Throwing Shuriken.png"));
 		} catch (IOException e) { // TODO Auto-generated catch block
 			e.printStackTrace();
 		}

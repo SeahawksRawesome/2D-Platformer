@@ -18,12 +18,15 @@ public class ObjectManager {
 					
 				}
 			
-				if (o1.collisionBox.intersects(o2.collisionBox)) {
-					if ((o1 instanceof Platform && o2 instanceof Stickman) 
-						|| (o2 instanceof Platform && o1 instanceof Stickman)) {
+				if ( (o2 instanceof Platform && o1 instanceof Stickman)) {
+				if (o1.feetBox.intersects(o2.collisionBox) ) {
 						//This is the collision code for the Platform and Stickman.
 						System.out.println("Collided");
-						platformOffset = o1.y;
+				//	if(o2.y > o1.y + 75){
+						platformOffset = o2.y - o1.height +1;	
+					//}
+													
+						
 						return true;
 					}
 					

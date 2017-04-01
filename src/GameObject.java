@@ -7,6 +7,7 @@ public class GameObject {
 	int width;
 	int height;
 	Rectangle collisionBox;
+	Rectangle feetBox;
 
 	GameObject() {
 		collisionBox = new Rectangle(x, y, width, height);
