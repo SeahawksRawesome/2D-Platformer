@@ -39,7 +39,7 @@ public class Stickman extends GameObject {
 			y = bottom;
 			velocity = 0;
 		}
-		collisionBox.setBounds(x, y, width, height);
+		//collisionBox.setBounds(x, y, width, height);
 		feetBox.setBounds(x, y +70, width, height -70  );
 	}
 
