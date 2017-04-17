@@ -22,7 +22,7 @@ public class Stickman extends GameObject {
 		this.height = height;
 		speed = 5;
 		collisionBox = new Rectangle(x, y, width, height);
-		feetBox= new Rectangle(x, y , width, height );
+		feetBox = new Rectangle(x, y, width, height);
 	}
 
 	void update() {
@@ -39,13 +39,13 @@ public class Stickman extends GameObject {
 			y = bottom;
 			velocity = 0;
 		}
-		//collisionBox.setBounds(x, y, width, height);
-		feetBox.setBounds(x, y +70, width, height -70  );
+		// collisionBox.setBounds(x, y, width, height);
+		feetBox.setBounds(x + 11, y + 70, width - 24, height - 70);
 	}
 
 	void draw(Graphics g) {
-		//g.setColor(Color.WHITE);
-		//g.drawRect(collisionBox.x, collisionBox.y, collisionBox.width, collisionBox.height);
+		// g.setColor(Color.WHITE);
+		// g.drawRect(collisionBox.x, collisionBox.y, collisionBox.width, collisionBox.height);
 		g.setColor(Color.BLACK);
 		g.drawRect(feetBox.x, feetBox.y, feetBox.width, feetBox.height);
 		g.drawImage(GamePanel.ninjaImg, x, y, width, height, null);
