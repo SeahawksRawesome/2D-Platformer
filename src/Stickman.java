@@ -1,9 +1,15 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public class Stickman extends GameObject {
-
+	public static BufferedImage ninjaImg;
+	public static BufferedImage ninjaImgRight;
+	public static BufferedImage ninjaImgLeft;
 	int speed;
 	boolean Rightkey;
 	boolean Leftkey;
@@ -23,15 +29,23 @@ public class Stickman extends GameObject {
 		speed = 5;
 		collisionBox = new Rectangle(x, y, width, height);
 		feetBox = new Rectangle(x, y, width, height);
+		try {
+			ninjaImgRight = ImageIO.read(this.getClass().getResourceAsStream("Ninja Idle"));
+			ninjaImgLeft = ImageIO.read(this.getClass().getResourceAsStream("NinjaImgLeft"));
+		} catch (IOException e) { // TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	void update() {
 		super.update();
 		if (Rightkey) {
 			x += speed;
+			ninjaImg = ninjaImgRight;
 		}
 		if (Leftkey) {
 			x -= speed;
+			ninjaImg = ninjaImgLeft;
 		}
 		velocity += gravity;
 		y += velocity;
@@ -45,10 +59,11 @@ public class Stickman extends GameObject {
 
 	void draw(Graphics g) {
 		// g.setColor(Color.WHITE);
-		// g.drawRect(collisionBox.x, collisionBox.y, collisionBox.width, collisionBox.height);
+		// g.drawRect(collisionBox.x, collisionBox.y, collisionBox.width,
+		// collisionBox.height);
 		g.setColor(Color.BLACK);
 		g.drawRect(feetBox.x, feetBox.y, feetBox.width, feetBox.height);
-		g.drawImage(GamePanel.ninjaImg, x, y, width, height, null);
+		g.drawImage(ninjaImg, x, y, width, height, null);
 	}
 
 	public void jump() {
