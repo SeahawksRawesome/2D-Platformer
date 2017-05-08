@@ -8,6 +8,9 @@ public class GameObject {
 	int height;
 	Rectangle collisionBox;
 	Rectangle feetBox;
+	Rectangle headBox;
+	Rectangle knightBox;
+	boolean isAlive = true;
 
 	GameObject() {
 		collisionBox = new Rectangle(x, y, width, height);

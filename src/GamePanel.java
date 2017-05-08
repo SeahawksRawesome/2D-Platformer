@@ -15,7 +15,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	final int GAME_STATE = 1;
 	final int END_STATE = 2;
 	int currentState = GAME_STATE;
-	Stickman player = new Stickman(250, 100, 44, 80);
+	Stickman player = new Stickman(250, 100, 44, 80, this);
 	// Enemy knight = new Enemy(250, 100, 44, 80);
 	int bottom = 670;
 	ObjectManager manage = new ObjectManager();
