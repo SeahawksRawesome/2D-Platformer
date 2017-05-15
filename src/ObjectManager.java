@@ -25,11 +25,11 @@ public class ObjectManager {
 				GameObject o1 = objects.get(i);
 				GameObject o2 = objects.get(j);
 				if (o1 instanceof Stickman) {
-
+					
 				}
 
 				if ((o2 instanceof Platform && o1 instanceof Stickman)) {
-					if (o1.feetBox.intersects(o2.collisionBox)) {
+					if (((Stickman)o1).feetBox.intersects(o2.collisionBox)) {
 						// This is the collision code for the Platform and
 						// Stickman.
 						System.out.println("Collided");
@@ -42,7 +42,7 @@ public class ObjectManager {
 
 				}
 				if ((o1 instanceof Stickman && o2 instanceof Enemy)) {
-					if (o1.feetBox.intersects(o2.headBox)) {
+					if (((Stickman)o1).feetBox.intersects(o2.headBox)) {
 						System.out.println("Yup");
 						o2.isAlive = false;
 					}

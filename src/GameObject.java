@@ -7,7 +7,7 @@ public class GameObject {
 	int width;
 	int height;
 	Rectangle collisionBox;
-	Rectangle feetBox;
+	
 	Rectangle headBox;
 	Rectangle knightBox;
 	boolean isAlive = true;

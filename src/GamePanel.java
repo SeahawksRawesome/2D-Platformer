@@ -115,6 +115,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			player.jump();
 		}
+		if( e.getKeyCode() == KeyEvent.VK_SHIFT){
+				player.speed = 10;
+		}
+		if( e.getKeyCode() == KeyEvent.VK_DOWN){
+			player.Downkey = true;
+	}
+		if( e.getKeyCode() == KeyEvent.VK_UP){
+			player.Upkey = true;
+	}
 	}
 
 	@Override
@@ -126,6 +135,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			player.Leftkey = false;
 		}
+		if(e.getKeyCode() == KeyEvent.VK_SHIFT){
+			player.speed = 5;
+		}
+		if( e.getKeyCode() == KeyEvent.VK_DOWN){
+			player.Downkey = false;
+	}
+		if( e.getKeyCode() == KeyEvent.VK_UP){
+			player.Upkey = false;
+	}
 
 	}
 

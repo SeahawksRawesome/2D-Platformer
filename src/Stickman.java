@@ -1,22 +1,29 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
-public class Stickman extends GameObject {
+public class Stickman extends GameObject   {
 	public static BufferedImage ninjaImg;
 	public static BufferedImage ninjaImgRight;
 	public static BufferedImage ninjaImgLeft;
+	public static BufferedImage ninjaCrouchRight;
+	public static BufferedImage ninjaCrouchLeft;
+	public static BufferedImage ninjaIdle;
 	public static ImageIcon ninjaRunningRightImg;
 	public static ImageIcon ninjaRunningLeftImg;
 	int speed;
 	boolean Rightkey;
 	boolean Leftkey;
 	boolean Spacekey;
+	boolean Downkey;
+	boolean Upkey;
 	int bottom = 700;
 	final int gravity = 1;
 	int velocity = 0;
@@ -24,7 +31,7 @@ public class Stickman extends GameObject {
 	boolean doublejump = true;
 	int whichImg;
 	GamePanel panel;
-
+	Rectangle feetBox;
 	Stickman(int x, int y, int width, int height, GamePanel gamePanel) {
 		super();
 		panel = gamePanel;
@@ -40,6 +47,9 @@ public class Stickman extends GameObject {
 			ninjaImgLeft = ImageIO.read(this.getClass().getResourceAsStream("NinjaImgLeft.png"));
 			ninjaRunningRightImg = new ImageIcon(this.getClass().getResource("Ninja Running.gif"));
 			ninjaRunningLeftImg = new ImageIcon(this.getClass().getResource("Ninja Running Left.gif"));
+			ninjaCrouchRight = ImageIO.read(this.getClass().getResourceAsStream("NinjaCrouchRight.png"));
+			ninjaCrouchLeft = ImageIO.read(this.getClass().getResourceAsStream("NinjaCrouchLeft.png"));
+			ninjaIdle = ImageIO.read(this.getClass().getResourceAsStream("Ninja Idle.png"));
 		} catch (IOException e) { // TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -60,6 +70,20 @@ public class Stickman extends GameObject {
 		if (y >= bottom) {
 			y = bottom;
 			velocity = 0;
+		}
+		if (Downkey){
+			if(ninjaImg == ninjaImgLeft){
+				ninjaImg = ninjaCrouchLeft;
+			}
+			else if(ninjaImg == ninjaImgRight){
+				ninjaImg = ninjaCrouchRight;
+			}
+			else if(ninjaImg == ninjaIdle){
+				ninjaImg = ninjaCrouchRight;
+			}
+		}
+		if(Upkey){
+			ninjaImg = ninjaIdle;
 		}
 		// collisionBox.setBounds(x, y, width, height);
 		feetBox.setBounds(x + 11, y + 70, width - 24, height - 70);
@@ -92,5 +116,5 @@ public class Stickman extends GameObject {
 		}
 
 	}
-
+	
 }

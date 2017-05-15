@@ -10,6 +10,7 @@ public class Enemy extends GameObject {
 	public static BufferedImage knightImgRight;
 	public static BufferedImage knightImgLeft;
 	public static BufferedImage knightImg;
+	boolean goLeft;
 
 	Enemy(int x, int y, int width, int height) {
 
@@ -37,14 +38,23 @@ public class Enemy extends GameObject {
 			x = 2;
 			reverseSpeed();
 			knightImg = knightImgRight;
+			goLeft = false;
 
 		} else if (x >= Stickman_Platformer.Width - 500) {
 			x = Stickman_Platformer.Width - 505;
 			reverseSpeed();
 			knightImg = knightImgLeft;
+			goLeft = true;
 
 		}
-		headBox.setBounds(x + 15, y, width - 20, height - 100);
+		if(goLeft){
+			headBox.setBounds(x + 5, y, width - 20, height - 100);
+		}
+		else{
+			headBox.setBounds(x + 15, y, width - 20, height - 100);
+		}
+			
+		
 	}
 
 	void draw(Graphics g) {
