@@ -47,19 +47,19 @@ public class Enemy extends GameObject {
 			goLeft = true;
 
 		}
-		if(goLeft){
+		if (goLeft) {
 			headBox.setBounds(x + 5, y, width - 20, height - 100);
-		}
-		else{
+		} else {
 			headBox.setBounds(x + 15, y, width - 20, height - 100);
 		}
-			
-		
+		knightBox.setBounds(x, y + 20, width, height);
+
 	}
 
 	void draw(Graphics g) {
 		g.drawImage(knightImg, x, y, width, height, null);
 		g.drawRect(headBox.x, headBox.y, headBox.width, headBox.height);
+		g.drawRect(knightBox.x, knightBox.y, knightBox.width, knightBox.height);
 	}
 
 	public void reverseSpeed() {

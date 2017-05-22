@@ -1,15 +1,13 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
-public class Stickman extends GameObject   {
+public class Stickman extends GameObject {
 	public static BufferedImage ninjaImg;
 	public static BufferedImage ninjaImgRight;
 	public static BufferedImage ninjaImgLeft;
@@ -32,6 +30,7 @@ public class Stickman extends GameObject   {
 	int whichImg;
 	GamePanel panel;
 	Rectangle feetBox;
+
 	Stickman(int x, int y, int width, int height, GamePanel gamePanel) {
 		super();
 		panel = gamePanel;
@@ -71,20 +70,23 @@ public class Stickman extends GameObject   {
 			y = bottom;
 			velocity = 0;
 		}
-		if (Downkey){
-			if(ninjaImg == ninjaImgLeft){
+		if (Downkey) {
+			if (ninjaImg == ninjaImgLeft) {
 				ninjaImg = ninjaCrouchLeft;
-			}
-			else if(ninjaImg == ninjaImgRight){
+			} else if (ninjaImg == ninjaImgRight) {
 				ninjaImg = ninjaCrouchRight;
-			}
-			else if(ninjaImg == ninjaIdle){
+			} else if (ninjaImg == ninjaIdle) {
 				ninjaImg = ninjaCrouchRight;
 			}
 		}
-		if(Upkey){
-			ninjaImg = ninjaIdle;
+		if (Upkey) {
+			if (ninjaImg == ninjaCrouchRight) {
+				ninjaImg = ninjaIdle;
+			} else if (ninjaImg == ninjaCrouchLeft) {
+				ninjaImg = ninjaImgLeft;
+			}
 		}
+
 		// collisionBox.setBounds(x, y, width, height);
 		feetBox.setBounds(x + 11, y + 70, width - 24, height - 70);
 	}
@@ -116,5 +118,5 @@ public class Stickman extends GameObject   {
 		}
 
 	}
-	
+
 }
