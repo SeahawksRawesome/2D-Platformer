@@ -28,8 +28,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		manage.addObject(player);
 		manage.addObject(new Platform(300, 500, 100, 20));
 		manage.addObject(new Platform(400, 600, 100, 20));
+		manage.addObject(new Platform(700, 300, 100, 20));
+		manage.addObject(new Platform(600, 400, 100, 20));
 		manage.addObject(new Enemy(400, 630, 66, 120));
-
+		manage.addObject(new Orb(720,250,20,20));
+		
 	}
 
 	@Override

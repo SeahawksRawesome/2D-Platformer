@@ -39,7 +39,12 @@ public class ObjectManager {
 
 						return true;
 					}
-
+					if ((o1 instanceof Stickman && o2 instanceof Orb)) {
+						if (((Stickman) o1).feetBox.intersects(o2.orbBox)){
+							//Run gif and put ninja to next level
+						}
+						
+					}
 				}
 				if ((o1 instanceof Stickman && o2 instanceof Enemy)) {
 					if (((Stickman) o1).feetBox.intersects(o2.headBox)) {

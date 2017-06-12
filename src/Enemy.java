@@ -52,7 +52,7 @@ public class Enemy extends GameObject {
 		} else {
 			headBox.setBounds(x + 15, y, width - 20, height - 100);
 		}
-		knightBox.setBounds(x, y + 20, width, height);
+		knightBox.setBounds(x, y + 40, width, height);
 
 	}
 
