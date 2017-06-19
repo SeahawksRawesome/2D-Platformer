@@ -30,7 +30,7 @@ public class Orb extends GameObject {
 	void draw(Graphics g){
 		g.drawImage(orb, x, y, width, height, null);
 		g.setColor(Color.BLACK);
-		g.drawRect(collisionBox.x, collisionBox.y, collisionBox.width, collisionBox.height);
+		g.drawRect(orbBox.x, orbBox.y, orbBox.width, orbBox.height);
 	}
 	
 }

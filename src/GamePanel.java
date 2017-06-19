@@ -16,6 +16,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	final int END_STATE = 2;
 	int currentState = GAME_STATE;
 	Stickman player = new Stickman(250, 100, 44, 80, this);
+	Orb orbThing = new Orb(720,290,20,20);
 	// Enemy knight = new Enemy(250, 100, 44, 80);
 	int bottom = 670;
 	ObjectManager manage = new ObjectManager();
@@ -29,9 +30,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		manage.addObject(new Platform(300, 500, 100, 20));
 		manage.addObject(new Platform(400, 600, 100, 20));
 		manage.addObject(new Platform(700, 300, 100, 20));
-		manage.addObject(new Platform(600, 400, 100, 20));
+		manage.addObject(new Platform(550, 400, 100, 20));
 		manage.addObject(new Enemy(400, 630, 66, 120));
-		manage.addObject(new Orb(720,250,20,20));
+		manage.addObject(orbThing);
 		
 	}
 
@@ -75,7 +76,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		} else {
 			player.bottom = bottom;
 		}
-
+		if (player.feetBox.intersects (orbThing.orbBox)) {
+			orbThing.isAlive = false;
+		}
 	}
 
 	void updateEndState() {
@@ -126,6 +129,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 		if( e.getKeyCode() == KeyEvent.VK_UP){
 			player.Upkey = true;
+	}
+		if( e.getKeyCode() == KeyEvent.VK_R){
+			manage.addObject(new Enemy(400, 630, 66, 120));
+	}
+		if( e.getKeyCode() == KeyEvent.VK_E){
+			manage.addObject(player);
 	}
 	}
 

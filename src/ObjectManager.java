@@ -27,7 +27,13 @@ public class ObjectManager {
 				if (o1 instanceof Stickman) {
 
 				}
-
+				if ((o1 instanceof Stickman && o2 instanceof Orb)) {
+					System.out.println("Yo, dis is workun");
+					if (((Stickman) o1).feetBox.intersects(((Orb) o2).orbBox)) {
+						System.exit(0);
+						o2.isAlive = false;
+					}
+				}
 				if ((o2 instanceof Platform && o1 instanceof Stickman)) {
 					if (((Stickman) o1).feetBox.intersects(o2.collisionBox)) {
 						// This is the collision code for the Platform and
@@ -39,13 +45,9 @@ public class ObjectManager {
 
 						return true;
 					}
-					if ((o1 instanceof Stickman && o2 instanceof Orb)) {
-						if (((Stickman) o1).feetBox.intersects(o2.orbBox)){
-							//Run gif and put ninja to next level
-						}
-						
-					}
+
 				}
+				
 				if ((o1 instanceof Stickman && o2 instanceof Enemy)) {
 					if (((Stickman) o1).feetBox.intersects(o2.headBox)) {
 						System.out.println("Yup");
