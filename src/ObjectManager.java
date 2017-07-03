@@ -24,18 +24,21 @@ public class ObjectManager {
 			for (int j = i + 1; j < objects.size(); j++) {
 				GameObject o1 = objects.get(i);
 				GameObject o2 = objects.get(j);
-				if (o1 instanceof Stickman) {
+				if (o1 instanceof Ninja) {
 
 				}
-				if ((o1 instanceof Stickman && o2 instanceof Orb)) {
+				if ((o1 instanceof Ninja && o2 instanceof Orb)) {
 					System.out.println("Yo, dis is workun");
-					if (((Stickman) o1).feetBox.intersects(((Orb) o2).orbBox)) {
-						System.exit(0);
-						o2.isAlive = false;
-					}
+				//	if (((Ninja) o1).feetBox.intersects(((Orb) o2).orbBox)) {
+						//System.exit(0);
+					//	o2.isAlive = false;
+					//	System.out.println("jkfjghdvkshdioheiofhrhfnsdjknfiduhflsendrigoirjhvljrifjijrgeoiogejio");
+						//((Ninja) o1).orbPoints = 1;
+						
+				//	}
 				}
-				if ((o2 instanceof Platform && o1 instanceof Stickman)) {
-					if (((Stickman) o1).feetBox.intersects(o2.collisionBox)) {
+				if ((o2 instanceof Platform && o1 instanceof Ninja)) {
+					if (((Ninja) o1).feetBox.intersects(o2.collisionBox)) {
 						// This is the collision code for the Platform and
 						// Stickman.
 						System.out.println("Collided");
@@ -48,14 +51,14 @@ public class ObjectManager {
 
 				}
 				
-				if ((o1 instanceof Stickman && o2 instanceof Enemy)) {
-					if (((Stickman) o1).feetBox.intersects(o2.headBox)) {
+				if ((o1 instanceof Ninja && o2 instanceof Enemy)) {
+					if (((Ninja) o1).feetBox.intersects(o2.headBox)) {
 						System.out.println("Yup");
 						o2.isAlive = false;
 					}
 				}
-				if ((o1 instanceof Stickman && o2 instanceof Enemy)) {
-					if (((Stickman) o1).feetBox.intersects(o2.knightBox)) {
+				if ((o1 instanceof Ninja && o2 instanceof Enemy)) {
+					if (((Ninja) o1).feetBox.intersects(o2.knightBox)) {
 						System.out.println("crumbs");
 						o1.isAlive = false;
 					}

@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,13 +16,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	final int GAME_STATE = 1;
 	final int END_STATE = 2;
 	int currentState = GAME_STATE;
-	Stickman player = new Stickman(250, 100, 44, 80, this);
+	Ninja player = new Ninja(250, 100, 44, 80, this);
 	Orb orbThing = new Orb(720,290,20,20);
 	// Enemy knight = new Enemy(250, 100, 44, 80);
 	int bottom = 670;
 	ObjectManager manage = new ObjectManager();
 	public static BufferedImage ninjaImg;
 	public static BufferedImage ninjarunningImg;
+	Font gameFont;
+	
 
 	GamePanel() {
 		time = new Timer(1000 / 60, this);
@@ -33,6 +36,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		manage.addObject(new Platform(550, 400, 100, 20));
 		manage.addObject(new Enemy(400, 630, 66, 120));
 		manage.addObject(orbThing);
+		gameFont = new Font("Arial",Font.PLAIN,36 );
 		
 	}
 
@@ -78,6 +82,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		}
 		if (player.feetBox.intersects (orbThing.orbBox)) {
 			orbThing.isAlive = false;
+			player.orbPoints = 1;
 		}
 	}
 

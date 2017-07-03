@@ -7,7 +7,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
-public class Stickman extends GameObject {
+public class Ninja extends GameObject {
 	public static BufferedImage ninjaImg;
 	public static BufferedImage ninjaImgRight;
 	public static BufferedImage ninjaImgLeft;
@@ -30,8 +30,9 @@ public class Stickman extends GameObject {
 	int whichImg;
 	GamePanel panel;
 	Rectangle feetBox;
+	public int orbPoints = 0;
 
-	Stickman(int x, int y, int width, int height, GamePanel gamePanel) {
+	Ninja(int x, int y, int width, int height, GamePanel gamePanel) {
 		super();
 		panel = gamePanel;
 		this.x = x;
@@ -52,10 +53,12 @@ public class Stickman extends GameObject {
 		} catch (IOException e) { // TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 
 	void update() {
 		super.update();
+		
 		if (Rightkey) {
 			x += speed;
 			ninjaImg = ninjaImgRight;
@@ -104,6 +107,7 @@ public class Stickman extends GameObject {
 		} else {
 			g.drawImage(ninjaImg, x, y, width, height, null);
 		}
+		g.drawString(orbPoints + "/1", 1800, 10);
 	}
 
 	public void jump() {
