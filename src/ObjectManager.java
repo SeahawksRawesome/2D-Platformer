@@ -5,7 +5,8 @@ public class ObjectManager {
 
 	int platformOffset = 0;
 	ArrayList<GameObject> objects;
-
+	GamePanel panel;
+	Ninja player;
 	ObjectManager() {
 		objects = new ArrayList<GameObject>();
 
@@ -27,15 +28,15 @@ public class ObjectManager {
 				if (o1 instanceof Ninja) {
 
 				}
-				if ((o1 instanceof Ninja && o2 instanceof Orb)) {
+				if ((o1 instanceof Ninja && o2 instanceof Flag)) {
 					System.out.println("Yo, dis is workun");
-				//	if (((Ninja) o1).feetBox.intersects(((Orb) o2).orbBox)) {
-						//System.exit(0);
-					//	o2.isAlive = false;
-					//	System.out.println("jkfjghdvkshdioheiofhrhfnsdjknfiduhflsendrigoirjhvljrifjijrgeoiogejio");
-						//((Ninja) o1).orbPoints = 1;
+					if (((Ninja) o1).feetBox.intersects(o2.flagBox)){
+						if(((Ninja) o1).orbPoints == 1){
+							panel.currentState = panel.Lvl_2;
+						}
 						
-				//	}
+						
+					}
 				}
 				if ((o2 instanceof Platform && o1 instanceof Ninja)) {
 					if (((Ninja) o1).feetBox.intersects(o2.collisionBox)) {

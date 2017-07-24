@@ -37,7 +37,7 @@ public class Stickman_Platformer {
 		f1.setSize(Width, Height);
 		l1.setVisible(true);
 	
-		l1.setText("visible");
+		//l1.setText("visible");
 	}
 
 }

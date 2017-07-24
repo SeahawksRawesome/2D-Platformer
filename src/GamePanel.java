@@ -13,11 +13,12 @@ import javax.swing.Timer;
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Timer time;
 	final int MENU_STATE = 0;
-	final int GAME_STATE = 1;
-	final int END_STATE = 2;
-	int currentState = GAME_STATE;
+	final int Lvl_1 = 1;
+	final int Lvl_2 = 2;
+	final int END_STATE = 3;
+	int currentState = Lvl_1;
 	Ninja player = new Ninja(250, 100, 44, 80, this);
-	Orb orbThing = new Orb(720,290,20,20);
+	Orb orbThing = new Orb(720,280,20,20);
 	// Enemy knight = new Enemy(250, 100, 44, 80);
 	int bottom = 670;
 	ObjectManager manage = new ObjectManager();
@@ -36,7 +37,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		manage.addObject(new Platform(550, 400, 100, 20));
 		manage.addObject(new Enemy(400, 630, 66, 120));
 		manage.addObject(orbThing);
-		gameFont = new Font("Arial",Font.PLAIN,36 );
+		manage.addObject(new Flag(1700,570, 90, 180));
+		gameFont = new Font("Arial",Font.PLAIN,100 );
 		
 	}
 
@@ -47,7 +49,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		// Change to Menu state later.
 		if (currentState == MENU_STATE) {
 			updateMenuState();
-		} else if (currentState == GAME_STATE) {
+		} else if (currentState == Lvl_1) {
+			updateGameState();
+		} else if (currentState == Lvl_2) {
 			updateGameState();
 		} else if (currentState == END_STATE) {
 			updateEndState();
@@ -62,7 +66,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public void paintComponent(Graphics g) {
 		if (currentState == MENU_STATE) {
 			drawMenuState(g);
-		} else if (currentState == GAME_STATE) {
+		} else if (currentState == Lvl_1) {
+			drawGameState(g);
+		} else if (currentState == Lvl_2) {
 			drawGameState(g);
 		} else if (currentState == END_STATE) {
 			drawEndState(g);

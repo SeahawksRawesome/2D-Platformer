@@ -11,6 +11,7 @@ public class GameObject {
 	Rectangle orbBox;
 	Rectangle headBox;
 	Rectangle knightBox;
+	Rectangle flagBox;
 	boolean isAlive = true;
 
 	GameObject() {

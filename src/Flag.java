@@ -15,7 +15,7 @@ public class Flag extends GameObject {
 		this.y = y;
 		this.width = width;
 		this.height = height;
-		orbBox = new Rectangle(x, y, width, height);
+		flagBox = new Rectangle(x, y, width, height);
 		try {
 			flag = ImageIO.read(this.getClass().getResourceAsStream("Flag.png"));
 		} catch (IOException e) { // TODO Auto-generated catch block
@@ -23,12 +23,12 @@ public class Flag extends GameObject {
 		}
 	}
 	void update(){
-		orbBox.setBounds(x, y, width, height );
+		flagBox.setBounds(x, y, width, height );
 	}
 	void draw(Graphics g){
 		g.drawImage(flag, x, y, width, height, null);
 		g.setColor(Color.BLACK);
-		g.drawRect(orbBox.x, orbBox.y, orbBox.width, orbBox.height);
+		g.drawRect(flagBox.x, flagBox.y, flagBox.width, flagBox.height);
 	}
 	}
 
