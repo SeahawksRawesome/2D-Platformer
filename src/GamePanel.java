@@ -13,10 +13,10 @@ import javax.swing.Timer;
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Timer time;
 	final int MENU_STATE = 0;
-	final int Lvl_1 = 1;
-	final int Lvl_2 = 2;
+	 static int Lvl_1 = 1;
+	 static int Lvl_2 = 2;
 	final int END_STATE = 3;
-	int currentState = Lvl_1;
+	static int currentState = Lvl_1;
 	Ninja player = new Ninja(250, 100, 44, 80, this);
 	Orb orbThing = new Orb(720,280,20,20);
 	// Enemy knight = new Enemy(250, 100, 44, 80);
@@ -46,13 +46,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public void actionPerformed(ActionEvent e) {
 
 		repaint();
+		
 		// Change to Menu state later.
 		if (currentState == MENU_STATE) {
 			updateMenuState();
 		} else if (currentState == Lvl_1) {
 			updateGameState();
 		} else if (currentState == Lvl_2) {
-			updateGameState();
+			System.out.println("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhey!");
+			updateGameStateLVl_2();
 		} else if (currentState == END_STATE) {
 			updateEndState();
 		}
@@ -69,7 +71,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		} else if (currentState == Lvl_1) {
 			drawGameState(g);
 		} else if (currentState == Lvl_2) {
-			drawGameState(g);
+			drawGameStateLVL_2(g);
 		} else if (currentState == END_STATE) {
 			drawEndState(g);
 		}
@@ -91,6 +93,18 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			player.orbPoints = 1;
 		}
 	}
+	void updateGameStateLVl_2(){
+		manage.update();
+		if (manage.checkCollision()) {
+			player.bottom = manage.platformOffset;
+		} else {
+			player.bottom = bottom;
+		}
+		if (player.feetBox.intersects (orbThing.orbBox)) {
+			orbThing.isAlive = false;
+			player.orbPoints = 1;
+		}
+	}
 
 	void updateEndState() {
 
@@ -101,6 +115,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	void drawGameState(Graphics g) {
+		manage.draw(g);
+		g.setColor(new Color(139, 69, 19));
+		g.fillRect(0, 830, 2000, 900);
+		g.setColor(Color.green);
+		g.fillRect(0, 750, 2000, 80);
+
+	}
+	void drawGameStateLVL_2(Graphics g) {
 		manage.draw(g);
 		g.setColor(new Color(139, 69, 19));
 		g.fillRect(0, 830, 2000, 900);

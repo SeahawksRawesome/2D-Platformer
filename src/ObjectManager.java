@@ -5,7 +5,7 @@ public class ObjectManager {
 
 	int platformOffset = 0;
 	ArrayList<GameObject> objects;
-	GamePanel panel;
+
 	Ninja player;
 	ObjectManager() {
 		objects = new ArrayList<GameObject>();
@@ -32,7 +32,7 @@ public class ObjectManager {
 					System.out.println("Yo, dis is workun");
 					if (((Ninja) o1).feetBox.intersects(o2.flagBox)){
 						if(((Ninja) o1).orbPoints == 1){
-							panel.currentState = panel.Lvl_2;
+							GamePanel.currentState = GamePanel.Lvl_2;
 						}
 						
 						
