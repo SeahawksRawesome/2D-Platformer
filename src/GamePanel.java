@@ -18,6 +18,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	final int END_STATE = 3;
 	static int currentState = Lvl_1;
 	Ninja player = new Ninja(250, 100, 44, 80, this);
+	Ninja player1 = new Ninja(250, -1000000, 44, 80, this);
 	Orb orbThing = new Orb(720,280,20,20);
 	// Enemy knight = new Enemy(250, 100, 44, 80);
 	int bottom = 670;
@@ -31,6 +32,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		time = new Timer(1000 / 60, this);
 		player.bottom = bottom;
 		manage.addObject(player);
+		
 		manage.addObject(new Platform(300, 500, 100, 20));
 		manage.addObject(new Platform(400, 600, 100, 20));
 		manage.addObject(new Platform(700, 300, 100, 20));
@@ -54,6 +56,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			updateGameState();
 		} else if (currentState == Lvl_2) {
 			System.out.println("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhey!");
+			player.isAlive = false;
+			//player.isAlive = true;
+			manage.addObject(player1);
+			
 			updateGameStateLVl_2();
 		} else if (currentState == END_STATE) {
 			updateEndState();
@@ -146,10 +152,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		// System.out.println("Hi");
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			player.Leftkey = true;
+			player1.Leftkey = true;
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			player.Rightkey = true;
+			player1.Rightkey = true;
+			
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			player.jump();
@@ -159,6 +168,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		}
 		if( e.getKeyCode() == KeyEvent.VK_DOWN){
 			player.Downkey = true;
+			player1.Downkey = true;
 	}
 		if( e.getKeyCode() == KeyEvent.VK_UP){
 			player.Upkey = true;
