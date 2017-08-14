@@ -72,6 +72,7 @@ public class Ninja extends GameObject {
 		if (y >= bottom) {
 			y = bottom;
 			velocity = 0;
+			
 		}
 		if (Downkey) {
 			if (ninjaImg == ninjaImgLeft) {

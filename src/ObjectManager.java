@@ -33,6 +33,7 @@ public class ObjectManager {
 					if (((Ninja) o1).feetBox.intersects(o2.flagBox)){
 						if(((Ninja) o1).orbPoints == 1){
 							GamePanel.currentState = GamePanel.Lvl_2;
+							
 						}
 						
 						
