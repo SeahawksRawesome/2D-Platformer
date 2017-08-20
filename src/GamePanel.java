@@ -16,7 +16,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	 static int Lvl_1 = 1;
 	// static int Lvl_2 = 2;
 	final int END_STATE = 3;
-	static int currentState = Lvl_1;
+	static int currentState = 3;
 	Ninja player = new Ninja(250, 100, 44, 80, this);
 	//Ninja player1 = new Ninja(250, 100, 44, 80, this);
 	Orb orbThing = new Orb(720,280,20,20);
@@ -26,6 +26,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public static BufferedImage ninjaImg;
 	public static BufferedImage ninjarunningImg;
 	Font gameFont;
+	Font titleFont;
 	
 
 	GamePanel() {
@@ -40,7 +41,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		manage.addObject(new Enemy(400, 630, 66, 120));
 		manage.addObject(orbThing);
 		manage.addObject(new Flag(1700,570, 90, 180));
-		gameFont = new Font("Arial",Font.PLAIN,100 );
+		gameFont = new Font("Arial",Font.PLAIN,50 );
+		titleFont = new Font("Arial",Font.PLAIN,120 );
 		
 	}
 
@@ -82,7 +84,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	void updateGameState() {
 		manage.update();
-		
+		manage.checkCollision();
+
 		
 		if (manage.checkCollision()) {
 			player.bottom = manage.platformOffset;
@@ -92,6 +95,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (player.feetBox.intersects (orbThing.orbBox)) {
 			orbThing.isAlive = false;
 			player.orbPoints = 1;
+		}
+		if (!player.isAlive) {
+			currentState = END_STATE;
+			manage.reset();
+			player = new Ninja(250, 100, 44, 80, this);
+			manage.addObject(player);
+			
 		}
 	}
 	
@@ -114,7 +124,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	
 
 	void drawEndState(Graphics g) {
-
+		g.setColor(Color.red);
+		g.fillRect(0, 0, 4000, 2000);
+		g.setColor(Color.BLACK);
+		g.setFont(titleFont);
+		g.drawString("GAME OVER MAN!", 400, 500);
+		g.setFont(gameFont);
+		g.drawString("Press ENTER to play again", 600, 600);
 	}
 
 	@Override
@@ -152,9 +168,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if( e.getKeyCode() == KeyEvent.VK_R){
 			manage.addObject(new Enemy(400, 630, 66, 120));
 	}
-		if( e.getKeyCode() == KeyEvent.VK_E){
-			manage.addObject(player);
-	}
+	
+		if(e.getKeyCode() == KeyEvent.VK_ENTER && currentState == 3){
+			currentState = Lvl_1;
+			System.out.println("ITIDIIDIIDIDIDIIDIDIDID");
+			
+		}
 	}
 
 	@Override

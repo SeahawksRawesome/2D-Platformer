@@ -23,6 +23,7 @@ public class Stickman_Platformer {
 		panel = new GamePanel();
 		l1 = new JLabel();
 		panel.add(l1);
+		
 		setup();
 		// panel.setPreferredSize(new Dimension(500, 500));
 	}

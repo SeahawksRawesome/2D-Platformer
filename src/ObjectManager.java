@@ -32,7 +32,10 @@ public class ObjectManager {
 					System.out.println("Yo, dis is workun");
 					if (((Ninja) o1).feetBox.intersects(o2.flagBox)){
 						if(((Ninja) o1).orbPoints == 1){
-							GamePanel.currentState = GamePanel.Lvl_2;
+		
+					GamePanel.currentState = 3;
+					player.isAlive = false;
+					
 							
 						}
 						
@@ -57,12 +60,14 @@ public class ObjectManager {
 					if (((Ninja) o1).feetBox.intersects(o2.headBox)) {
 						System.out.println("Yup");
 						o2.isAlive = false;
+						
 					}
 				}
 				if ((o1 instanceof Ninja && o2 instanceof Enemy)) {
 					if (((Ninja) o1).feetBox.intersects(o2.knightBox)) {
 						System.out.println("crumbs");
 						o1.isAlive = false;
+						GamePanel.currentState = 3;
 					}
 				}
 			}
@@ -89,6 +94,9 @@ public class ObjectManager {
 			GameObject o = objects.get(i);
 			o.draw(g);
 		}
+	}
+	public void reset() {
+		objects.clear();
 	}
 
 }
