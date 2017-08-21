@@ -12,6 +12,10 @@ public class ObjectManager {
 
 	}
 
+	void setPlayer(Ninja player){
+		this.player = player;
+	}
+	
 	private void purgeObjects() {
 		for (int i = 0; i < objects.size(); i++) {
 			if (!objects.get(i).isAlive) {
@@ -32,9 +36,10 @@ public class ObjectManager {
 					System.out.println("Yo, dis is workun");
 					if (((Ninja) o1).feetBox.intersects(o2.flagBox)){
 						if(((Ninja) o1).orbPoints == 1){
-		
-					GamePanel.currentState = 3;
-					player.isAlive = false;
+							player.isAlive = false;
+					GamePanel.currentState = 4;
+					GamePanel.victory = true;
+			
 					
 							
 						}
@@ -96,7 +101,7 @@ public class ObjectManager {
 		}
 	}
 	public void reset() {
-		objects.clear();
-	}
+	objects.clear();
+}
 
 }

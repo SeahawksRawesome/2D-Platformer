@@ -16,7 +16,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	 static int Lvl_1 = 1;
 	// static int Lvl_2 = 2;
 	final int END_STATE = 3;
-	static int currentState = 3;
+	final int WIN_STATE = 4;
+	static int currentState = 1;
 	Ninja player = new Ninja(250, 100, 44, 80, this);
 	//Ninja player1 = new Ninja(250, 100, 44, 80, this);
 	Orb orbThing = new Orb(720,280,20,20);
@@ -27,13 +28,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public static BufferedImage ninjarunningImg;
 	Font gameFont;
 	Font titleFont;
+	static boolean victory = false;
 	
 
 	GamePanel() {
 		time = new Timer(1000 / 60, this);
 		player.bottom = bottom;
 		manage.addObject(player);
-		
+		manage.setPlayer(player);
 		manage.addObject(new Platform(300, 500, 100, 20));
 		manage.addObject(new Platform(400, 600, 100, 20));
 		manage.addObject(new Platform(700, 300, 100, 20));
@@ -62,6 +64,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			updateEndState();
 	
 		}
+		 else if (currentState == WIN_STATE){
+			 updateWinState();
+		 }
 	}
 
 	void startGame() {
@@ -75,6 +80,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			drawGameState(g);
 		} else if (currentState == END_STATE) {
 			drawEndState(g);
+		} else if (currentState == WIN_STATE) {
+			drawWinState(g);
 		}
 	}
 
@@ -96,16 +103,32 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			orbThing.isAlive = false;
 			player.orbPoints = 1;
 		}
-		if (!player.isAlive) {
+		if (!player.isAlive ) {
 			currentState = END_STATE;
 			manage.reset();
 			player = new Ninja(250, 100, 44, 80, this);
 			manage.addObject(player);
+			orbThing = new Orb(720,280,20,20);
+			drawReset();
 			
 		}
+		if(victory == true){
+			currentState = 4;
+			manage.reset();
+			player = new Ninja(250, 100, 44, 80, this);
+			manage.addObject(player);
+			orbThing = new Orb(720,280,20,20);
+			drawReset();
+			victory = false;
+			
+		}
+	
 	}
 	
 	void updateEndState() {
+
+	}
+	void updateWinState() {
 
 	}
 
@@ -131,6 +154,27 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString("GAME OVER MAN!", 400, 500);
 		g.setFont(gameFont);
 		g.drawString("Press ENTER to play again", 600, 600);
+	}
+	void drawWinState(Graphics g) {
+		g.setColor(Color.blue);
+		g.fillRect(0, 0, 4000, 2000);
+		g.setColor(Color.BLACK);
+		g.setFont(titleFont);
+		g.drawString("Victory! You Won!", 400, 500);
+		g.setFont(gameFont);
+		g.drawString("Press ENTER to play again", 600, 600);
+	}
+	
+	void drawReset(){
+		manage.addObject(new Platform(300, 500, 100, 20));
+		manage.addObject(new Platform(400, 600, 100, 20));
+		manage.addObject(new Platform(700, 300, 100, 20));
+		manage.addObject(new Platform(550, 400, 100, 20));
+		manage.addObject(new Enemy(400, 630, 66, 120));
+		manage.addObject(orbThing);
+		manage.addObject(new Flag(1700,570, 90, 180));
+		gameFont = new Font("Arial",Font.PLAIN,50 );
+		titleFont = new Font("Arial",Font.PLAIN,120 );
 	}
 
 	@Override
@@ -169,7 +213,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			manage.addObject(new Enemy(400, 630, 66, 120));
 	}
 	
-		if(e.getKeyCode() == KeyEvent.VK_ENTER && currentState == 3){
+		if(e.getKeyCode() == KeyEvent.VK_ENTER && currentState == 3 || e.getKeyCode() == KeyEvent.VK_ENTER && currentState == 4){
 			currentState = Lvl_1;
 			System.out.println("ITIDIIDIIDIDIDIIDIDIDID");
 			
